@@ -13,7 +13,7 @@ import {
 import { colors } from "../../theme/colors";
 import { images } from "../../theme/images";
 import { spacing } from "../../theme/spacing";
-import LogoOrange from "../../assets/svg/logo_orange.svg";
+import LogoOrange from "../../assets/svg/logo_orange2.svg";
 
 export function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState("");
@@ -38,7 +38,7 @@ export function LoginScreen({ navigation }: any) {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.header}>
-          <LogoOrange width={150} height={40} />
+          <LogoOrange width={150} height={40} style={{ marginTop: -75 }} />
         </View>
 
         <View style={styles.formSection}>
