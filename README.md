@@ -108,8 +108,10 @@ cd ios && pod install --repo-update && cd ..
 cd android && ./gradlew clean && cd ..
 ```
 
-![iOS App demo](https://www.loom.com/share/b4ce6066397d417b9bab5efa9d0fe54e)
-![Android App demo](https://www.loom.com/share/343c4678953d4786b45967058772aea4)
+## Demo
+
+- iOS App demo: https://www.loom.com/share/b4ce6066397d417b9bab5efa9d0fe54e
+- Android App demo: https://www.loom.com/share/343c4678953d4786b45967058772aea4
 
 For more help, check the React Native troubleshooting guide:
 https://reactnative.dev/docs/troubleshooting
