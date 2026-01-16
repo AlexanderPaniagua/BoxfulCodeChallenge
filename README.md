@@ -1,97 +1,112 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Boxful Code Challenge
 
-# Getting Started
+A React Native mobile app for managing shipments, built as part of the Boxful code challenge.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Prerequisites
 
-## Step 1: Start Metro
+Before running this project, make sure you have:
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- **Node.js** version 20 or higher
+- **npm** or **yarn** installed
+- For iOS: **Xcode** (Mac only) with iOS Simulator
+- For Android: **Android Studio** with an emulator or a physical device
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+If you haven't set up your development environment yet, follow the official guide:
+https://reactnative.dev/docs/set-up-your-environment
 
-```sh
-# Using npm
-npm start
+## Installation
 
-# OR using Yarn
-yarn start
+1. Clone the repository and navigate to the project folder:
+
+```bash
+cd BoxfulCodeChallenge
 ```
 
-## Step 2: Build and run your app
+2. Install the dependencies:
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+npm install
 ```
 
-### iOS
+3. For iOS only, install the CocoaPods dependencies:
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+cd ios && pod install && cd ..
 ```
 
-Then, and every time you update your native dependencies, run:
+## Running the App
 
-```sh
-bundle exec pod install
-```
+### Option 1: Quick Start (Recommended)
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+Run both Metro bundler and the app with a single command:
 
-```sh
-# Using npm
+**For iOS:**
+```bash
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+**For Android:**
+```bash
+npm run android
+```
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+### Option 2: Manual Start
 
-## Step 3: Modify your app
+If you prefer more control, you can start things separately:
 
-Now that you have successfully run the app, let's make changes!
+1. Start the Metro bundler in one terminal:
+```bash
+npm start
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+2. In another terminal, run the app:
+```bash
+npm run ios
+# or
+npm run android
+```
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## App Features
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- **Login Screen**: Authentication mockup with email/password
+- **Registration Screen**: Create account form with pre-filled dummy data
+- **Home Screen**: Dashboard with quick actions and recent shipments
+- **Create Shipment**: Add new shipments with recipient info and status
+- **History**: View all shipments with status filtering
+- **Analytics**: Coming soon
+- **Billing**: Coming soon
+- **Account**: User profile with logout functionality
 
-## Congratulations! :tada:
+## Project Structure
 
-You've successfully run and modified your React Native App. :partying_face:
+```
+src/
+├── assets/          # Images and SVG files
+├── context/         # React Context for state management
+├── navigation/      # Navigation configuration
+├── screens/         # App screens
+│   ├── auth/        # Login and Register screens
+│   └── home/        # Main app screens
+├── theme/           # Colors, spacing, and images
+└── types/           # TypeScript type definitions
+```
 
-### Now what?
+## Troubleshooting
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+**Metro bundler issues:**
+```bash
+npm start -- --reset-cache
+```
 
-# Troubleshooting
+**iOS build issues:**
+```bash
+cd ios && pod install --repo-update && cd ..
+```
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+**Android build issues:**
+```bash
+cd android && ./gradlew clean && cd ..
+```
 
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+For more help, check the React Native troubleshooting guide:
+https://reactnative.dev/docs/troubleshooting

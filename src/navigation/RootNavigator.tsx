@@ -7,9 +7,11 @@ import { SplashScreen } from "../screens/SplashScreen";
 import { OnboardingScreen } from "../screens/onboarding/OnboardingScreen";
 import { AuthNavigator } from "./AuthNavigator";
 import { AppTabs } from "./AppTabs";
+import { CreateShipmentScreen } from "../screens/home/CreateShipmentScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+// App navigation flow
 export function RootNavigator() {
   return (
     <NavigationContainer>
@@ -18,6 +20,11 @@ export function RootNavigator() {
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Auth" component={AuthNavigator} />
         <Stack.Screen name="AppTabs" component={AppTabs} />
+        <Stack.Screen
+          name="CreateShipment"
+          component={CreateShipmentScreen}
+          options={{ presentation: "modal" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

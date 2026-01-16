@@ -15,17 +15,21 @@ import { images } from "../../theme/images";
 import { spacing } from "../../theme/spacing";
 import LogoOrange from "../../assets/svg/logo_orange.svg";
 
-export function LoginScreen({ navigation }: any) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export function RegisterScreen({ navigation }: any) {
+  const [name, setName] = useState("Darrell Abbott");
+  const [email, setEmail] = useState("darrel.abbott@example.com");
+  const [phone, setPhone] = useState("+507 1234-5678");
+  const [password, setPassword] = useState("Qwerty123");
+  const [confirmPassword, setConfirmPassword] = useState("Qwerty123");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleLogin = () => {
+  const handleRegister = () => {
     navigation.replace("AppTabs");
   };
 
-  const handleRegister = () => {
-    navigation.navigate("Register");
+  const handleBackToLogin = () => {
+    navigation.goBack();
   };
 
   return (
@@ -42,14 +46,26 @@ export function LoginScreen({ navigation }: any) {
         </View>
 
         <View style={styles.formSection}>
-          <Text style={styles.welcomeTitle}>Bienvenido a boxful 🦄</Text>
-          <Text style={styles.subtitle}>Ingresa tu correo electrónico</Text>
+          <Text style={styles.welcomeTitle}>Crear cuenta</Text>
+          <Text style={styles.subtitle}>Completa tus datos</Text>
 
           <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Email</Text>
+            <Text style={styles.inputLabel}>Nombre</Text>
             <TextInput
               style={styles.input}
-              placeholder="example@"
+              placeholder="Nombre"
+              placeholderTextColor={colors.textTertiary}
+              value={name}
+              onChangeText={setName}
+              autoCapitalize="words"
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputLabel}>Correo</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="example@example.com"
               placeholderTextColor={colors.textTertiary}
               value={email}
               onChangeText={setEmail}
@@ -60,11 +76,23 @@ export function LoginScreen({ navigation }: any) {
           </View>
 
           <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Password</Text>
+            <Text style={styles.inputLabel}>Teléfono</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="+507 6000-0000"
+              placeholderTextColor={colors.textTertiary}
+              value={phone}
+              onChangeText={setPhone}
+              keyboardType="phone-pad"
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputLabel}>Contraseña</Text>
             <View style={styles.passwordContainer}>
               <TextInput
                 style={styles.passwordInput}
-                placeholder="Password"
+                placeholder="Contraseña"
                 placeholderTextColor={colors.textTertiary}
                 value={password}
                 onChangeText={setPassword}
@@ -83,19 +111,38 @@ export function LoginScreen({ navigation }: any) {
             </View>
           </View>
 
-          <Pressable style={styles.passkeyButton}>
-            <Image source={images.fingerprint} style={styles.fingerprintIcon} />
-            <Text style={styles.passkeyText}>Ingresar con passkey</Text>
-          </Pressable>
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputLabel}>Confirmar contraseña</Text>
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={styles.passwordInput}
+                placeholder="Confirmar contraseña"
+                placeholderTextColor={colors.textTertiary}
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+                secureTextEntry={!showConfirmPassword}
+                autoCapitalize="none"
+              />
+              <Pressable
+                style={styles.eyeButton}
+                onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                <Image
+                  source={images.eye}
+                  style={[styles.eyeIcon, !showConfirmPassword && styles.eyeIconHidden]}
+                />
+              </Pressable>
+            </View>
+          </View>
 
-          <Pressable style={styles.loginButton} onPress={handleLogin}>
-            <Text style={styles.loginButtonText}>Iniciar sesión</Text>
+          <Pressable style={styles.registerButton} onPress={handleRegister}>
+            <Text style={styles.registerButtonText}>Crear cuenta</Text>
           </Pressable>
 
           <Text style={styles.separator}>o también</Text>
 
-          <Pressable onPress={handleRegister}>
-            <Text style={styles.registerText}>Registrar cuenta</Text>
+          <Pressable onPress={handleBackToLogin}>
+            <Text style={styles.loginText}>Ya tengo cuenta</Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -112,7 +159,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   header: {
-    height: 280,
+    height: 180,
     backgroundColor: colors.gray,
     alignItems: "center",
     justifyContent: "center",
@@ -120,7 +167,8 @@ const styles = StyleSheet.create({
   formSection: {
     flex: 1,
     paddingHorizontal: spacing.l,
-    paddingTop: spacing.xl,
+    paddingTop: spacing.l,
+    paddingBottom: spacing.xl,
   },
   welcomeTitle: {
     fontSize: 22,
@@ -148,7 +196,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: colors.border,
     borderRadius: spacing.radiusSmall,
     paddingHorizontal: spacing.inputPaddingHorizontal,
     paddingVertical: spacing.inputPaddingVertical,
@@ -180,32 +228,14 @@ const styles = StyleSheet.create({
   eyeIconHidden: {
     opacity: 0.5,
   },
-  passkeyButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: spacing.m,
-    marginBottom: spacing.s,
-  },
-  fingerprintIcon: {
-    width: spacing.iconMedium,
-    height: spacing.iconMedium,
-    marginRight: spacing.s,
-    tintColor: colors.primary,
-  },
-  passkeyText: {
-    fontSize: spacing.m,
-    color: colors.primary,
-    fontWeight: "500",
-  },
-  loginButton: {
+  registerButton: {
     backgroundColor: colors.primary,
     paddingVertical: spacing.buttonPaddingVertical,
     borderRadius: spacing.radiusRound,
     alignItems: "center",
     marginTop: spacing.s,
   },
-  loginButtonText: {
+  registerButtonText: {
     color: colors.white,
     fontSize: spacing.m,
     fontWeight: "700",
@@ -216,7 +246,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginVertical: spacing.m,
   },
-  registerText: {
+  loginText: {
     textAlign: "center",
     color: colors.primary,
     fontSize: spacing.m,
